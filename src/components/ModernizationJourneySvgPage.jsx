@@ -380,80 +380,8 @@ export default function ModernizationJourneySvgPage({
         </div>
       </div>
 
-      {/* ── 1. CLEAN TOP NAVIGATION HEADER ── */}
-      <header className={`w-full py-6 px-6 sm:px-12 lg:px-20 border-b transition-colors ${
-        isLight ? "bg-white border-slate-200/90" : "bg-[#0c0c0c] border-white/10"
-      }`}>
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          
-          {/* Left: Brand Logo & Subpage Tag */}
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={onBackToMain || (() => { window.location.href = isLight ? "/light" : "/"; })}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
-                isLight
-                  ? "bg-slate-50 hover:bg-slate-100 text-slate-800 border-slate-300"
-                  : "bg-white/5 hover:bg-white/10 text-white border-white/15"
-              }`}
-              title="Return to Main Overview Homepage"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Overview</span>
-            </button>
-
-            <div className="flex items-center gap-2 pl-2">
-              <span className={`font-heading font-black text-lg tracking-tight ${isLight ? "text-slate-900" : "text-white"}`}>
-                AARK <span className="text-[#0284c7]">Innovations</span>
-              </span>
-              <span className="text-xs opacity-40">|</span>
-              <span className={`text-[11px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-md ${
-                isLight ? "bg-sky-50 text-[#0284c7] border border-sky-200" : "bg-sky-500/10 text-sky-400 border border-sky-500/30"
-              }`}>
-                Architecture SVG Subpage
-              </span>
-            </div>
-          </div>
-
-          {/* Right: Theme Switcher Toggle & Fast Consultation */}
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={handleLocalToggleTheme}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
-                isLight
-                  ? "bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300"
-                  : "bg-white/10 hover:bg-white/15 text-white border-white/20"
-              }`}
-              title="Toggle Light / Dark theme on SVG Subpage"
-            >
-              {isLight ? (
-                <>
-                  <Moon className="w-3.5 h-3.5 text-[#0284c7]" />
-                  <span>Dark Edition</span>
-                </>
-              ) : (
-                <>
-                  <Sun className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Light Subpage</span>
-                </>
-              )}
-            </button>
-
-            <a
-              href="#svg-cta"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-[#0284c7] hover:bg-[#0369a1] text-white shadow-md shadow-sky-600/30 transition-all"
-            >
-              <span>Talk Architecture</span>
-              <ArrowRight className="w-3 h-3" />
-            </a>
-          </div>
-
-        </div>
-      </header>
-
       {/* ── 2. SECTION 1: HERO (RELEVANT SVG: ENTERPRISE BUSINESS MODERNIZATION ARCHITECTURE) ── */}
-      <section id="svg-hero" className="py-20 px-6 sm:px-12 lg:px-20 relative">
+      <section id="svg-hero" className="pt-32 pb-20 px-6 sm:px-12 lg:px-20 relative">
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Core Positioning & Narrative */}

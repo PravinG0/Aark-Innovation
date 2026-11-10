@@ -1,9 +1,28 @@
 import React, { useState } from "react";
-import { ArrowRight, Menu, X, Sun, Moon, Volume2, VolumeX } from "lucide-react";
+import { ArrowRight, Menu, X, Sun, Moon, Volume2, VolumeX, Sparkles } from "lucide-react";
 
-export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = false, onToggleSound }) {
+export default function Navbar({ 
+  theme = "dark", 
+  onToggleTheme, 
+  soundEnabled = false, 
+  onToggleSound,
+  isSvgPage = false,
+  onBackToMain
+}) {
   const isLight = theme === "light";
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Dynamic section anchor targets based on whether user is on the SVG page or main video scrub page
+  const navLinks = [
+    { label: "Overview", href: isSvgPage ? "#svg-hero" : "#hero-section" },
+    { label: "Practices", href: isSvgPage ? "#svg-practices" : "#practice-section" },
+    { label: "Why AARK", href: isSvgPage ? "#svg-why-aark" : "#difference-section" },
+    { label: "Case Studies", href: isSvgPage ? "#svg-case-studies" : "#case-studies-section" },
+    { label: "Engagement", href: isSvgPage ? "#svg-cta" : "#models-section" },
+    { label: "Ecosystem", href: isSvgPage ? "#svg-cta" : "#tech-section" },
+  ];
+
+  const consultationHref = isSvgPage ? "#svg-cta" : "#contact-section";
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 shadow-2xl transition-all duration-300 ${
@@ -13,7 +32,16 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
-          <a href={isLight ? "/light" : "/"} className="flex items-center gap-3 group">
+          <a 
+            href={isLight ? "/light" : "/"} 
+            onClick={(e) => {
+              if (isSvgPage && onBackToMain) {
+                e.preventDefault();
+                onBackToMain();
+              }
+            }}
+            className="flex items-center gap-3 group"
+          >
             <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-[#0284c7] to-[#0369a1] border border-sky-400/50 flex items-center justify-center font-heading font-black text-xl text-white group-hover:scale-105 transition-all shadow-md shadow-sky-600/30`}>
               <span>A</span>
             </div>
@@ -32,12 +60,15 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
           <nav className={`hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider ${
             isLight ? "text-slate-700" : "text-slate-300"
           }`}>
-            <a href="#hero-section" className={`transition-colors ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}>Overview</a>
-            <a href="#practice-section" className={`transition-colors ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}>Practices</a>
-            <a href="#difference-section" className={`transition-colors ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}>Why AARK</a>
-            <a href="#case-studies-section" className={`transition-colors ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}>Case Studies</a>
-            <a href="#models-section" className={`transition-colors ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}>Engagement</a>
-            <a href="#tech-section" className={`transition-colors ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}>Ecosystem</a>
+            {navLinks.map((link) => (
+              <a 
+                key={link.label}
+                href={link.href} 
+                className={`transition-colors ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
           {/* Subpage Switcher Pill & Actions */}
@@ -49,11 +80,13 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
               <button
                 onClick={() => onToggleTheme && onToggleTheme("dark")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all text-[11px] ${
-                  theme === "dark"
+                  theme === "dark" && !isSvgPage
                     ? "bg-[#0284c7] text-white shadow-md font-extrabold"
-                    : "text-slate-600 hover:text-slate-900"
+                    : isSvgPage && theme === "dark"
+                      ? "bg-[#0284c7]/20 text-[#0284c7] dark:text-[#38bdf8] font-bold"
+                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
-                title="View Dark Obsidian Homepage"
+                title={isSvgPage ? "Switch SVG page to Dark Theme" : "View Dark Obsidian Homepage"}
               >
                 <Moon className="w-3 h-3" />
                 <span>Dark</span>
@@ -61,11 +94,13 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
               <button
                 onClick={() => onToggleTheme && onToggleTheme("light")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all text-[11px] ${
-                  theme === "light"
+                  theme === "light" && !isSvgPage
                     ? "bg-[#0284c7] text-white shadow-md font-extrabold"
-                    : "text-slate-400 hover:text-white"
+                    : isSvgPage && theme === "light"
+                      ? "bg-[#0284c7]/20 text-[#0284c7] font-bold"
+                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
-                title="View Light Studio Subpage"
+                title={isSvgPage ? "Switch SVG page to Light Theme" : "View Light Studio Subpage"}
               >
                 <Sun className="w-3 h-3" />
                 <span>Light</span>
@@ -73,7 +108,7 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
               <button
                 onClick={() => onToggleTheme && onToggleTheme("svg")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all text-[11px] ${
-                  theme === "svg"
+                  isSvgPage
                     ? "bg-[#0284c7] text-white shadow-md font-extrabold"
                     : "text-sky-400 hover:text-white"
                 }`}
@@ -84,8 +119,25 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
               </button>
             </div>
 
-            {/* Sound Toggle Button */}
-            {onToggleSound && (
+            {/* If on SVG page, provide a quick return button to Video Scrub Mode */}
+            {isSvgPage && onBackToMain && (
+              <button
+                type="button"
+                onClick={onBackToMain}
+                className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[11px] font-bold transition-all cursor-pointer ${
+                  isLight
+                    ? "bg-slate-100 hover:bg-slate-200 border-slate-300 text-slate-800"
+                    : "bg-white/10 hover:bg-white/15 border-white/20 text-white"
+                }`}
+                title="Return to cinematic video scroll engine"
+              >
+                <Sparkles className="w-3 h-3 text-[#0284c7]" />
+                <span>Video Mode</span>
+              </button>
+            )}
+
+            {/* Sound Toggle Button (Shown on Video scrub pages) */}
+            {!isSvgPage && onToggleSound && (
               <button
                 type="button"
                 onClick={onToggleSound}
@@ -113,7 +165,7 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
             )}
 
             <a
-              href="#contact-section"
+              href={consultationHref}
               className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-lg transition-all ${
                 isLight
                   ? "bg-[#0284c7] hover:bg-[#0369a1] text-white shadow-sky-600/25"
@@ -127,7 +179,7 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
-            {onToggleSound && (
+            {!isSvgPage && onToggleSound && (
               <button
                 type="button"
                 onClick={onToggleSound}
@@ -148,6 +200,7 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
               className={`p-2 rounded-xl text-xs font-bold flex items-center gap-1 border ${
                 isLight ? "bg-slate-100 border-slate-200 text-slate-800" : "bg-white/10 border-white/10 text-white"
               }`}
+              title="Toggle Theme"
             >
               {isLight ? <Moon className="w-4 h-4 text-[#0284c7]" /> : <Sun className="w-4 h-4 text-sky-400" />}
               <span>{isLight ? "Dark" : "Light"}</span>
@@ -168,78 +221,50 @@ export default function Navbar({ theme = "dark", onToggleTheme, soundEnabled = f
           <div className={`lg:hidden py-4 border-t space-y-3 px-3 rounded-b-2xl ${
             isLight ? "bg-white/95 border-slate-200 text-slate-800" : "bg-[#0a0a0a]/95 border-white/10 text-slate-300"
           }`}>
-            <a
-              href="#hero-section"
-              onClick={() => setMobileOpen(false)}
-              className={`block px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
-            >
-              Overview
-            </a>
-            <a
-              href="#practice-section"
-              onClick={() => setMobileOpen(false)}
-              className={`block px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
-            >
-              Practices
-            </a>
-            <a
-              href="#difference-section"
-              onClick={() => setMobileOpen(false)}
-              className={`block px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
-            >
-              Why AARK
-            </a>
-            <a
-              href="#case-studies-section"
-              onClick={() => setMobileOpen(false)}
-              className={`block px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
-            >
-              Case Studies
-            </a>
-            <a
-              href="#models-section"
-              onClick={() => setMobileOpen(false)}
-              className={`block px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
-            >
-              Engagement
-            </a>
-            <a
-              href="#tech-section"
-              onClick={() => setMobileOpen(false)}
-              className={`block px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
-            >
-              Ecosystem
-            </a>
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={`block px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "hover:text-[#0284c7]" : "hover:text-sky-400"}`}
+              >
+                {link.label}
+              </a>
+            ))}
+
+            {isSvgPage && onBackToMain && (
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  onBackToMain();
+                }}
+                className={`w-full text-left px-3 py-2 text-xs font-bold uppercase tracking-wider ${isLight ? "text-[#0284c7]" : "text-sky-400"}`}
+              >
+                ← Return to Video Mode
+              </button>
+            )}
 
             <div className="pt-2 flex flex-col gap-2">
               <button
                 onClick={() => {
-                  onToggleTheme && onToggleTheme("svg");
+                  if (isSvgPage) {
+                    onToggleTheme && onToggleTheme(isLight ? "dark" : "light");
+                  } else {
+                    onToggleTheme && onToggleTheme("svg");
+                  }
                   setMobileOpen(false);
                 }}
                 className="w-full py-2.5 px-4 rounded-xl border border-[#0284c7]/40 bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider"
               >
                 <span className="w-2 h-2 rounded-full bg-[#0284c7] animate-pulse" />
-                <span>Launch SVG Journey Subpage</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  onToggleTheme && onToggleTheme(isLight ? "dark" : "light");
-                  setMobileOpen(false);
-                }}
-                className="w-full py-2.5 px-4 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider"
-              >
-                {isLight ? <Moon className="w-4 h-4 text-[#0284c7]" /> : <Sun className="w-4 h-4 text-sky-400" />}
-                <span>Switch to {isLight ? "Dark Edition" : "Light Subpage"}</span>
+                <span>{isSvgPage ? (isLight ? "Switch to Dark Edition" : "Switch to Light Subpage") : "Launch SVG Journey Subpage"}</span>
               </button>
 
               <a
-                href="#contact-section"
+                href={consultationHref}
                 onClick={() => setMobileOpen(false)}
-                className={`w-full inline-flex justify-center items-center gap-2 font-extrabold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-md ${
-                  isLight ? "bg-[#0284c7] text-white" : "bg-[#0284c7] text-white"
-                }`}
+                className={`w-full inline-flex justify-center items-center gap-2 font-extrabold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-md bg-[#0284c7] text-white`}
               >
                 <span>Book Consultation</span>
                 <ArrowRight className="w-3.5 h-3.5" />

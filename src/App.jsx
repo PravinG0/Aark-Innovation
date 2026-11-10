@@ -120,6 +120,23 @@ export default function App() {
         isLight ? "bg-[#fcfdfe] text-slate-900" : "bg-[#080808] text-white"
       }`}>
         <Cursor />
+        {/* Fixed Header on SVG Modernization Journey Subpage */}
+        <Navbar
+          theme={colorTheme}
+          isSvgPage={true}
+          onToggleTheme={(requested) => {
+            if (requested === "video" || requested === "main") {
+              handleBackToMain();
+            } else if (requested === "dark" || requested === "light") {
+              handleSvgToggleTheme(requested);
+            } else {
+              handleToggleTheme(requested);
+            }
+          }}
+          onBackToMain={handleBackToMain}
+          soundEnabled={soundEnabled}
+          onToggleSound={handleToggleSound}
+        />
         <ModernizationJourneySvgPage 
           onBackToMain={handleBackToMain} 
           theme={colorTheme}

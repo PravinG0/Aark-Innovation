@@ -135,6 +135,50 @@ export default function HeroArchitectureSvg({
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
+
+          {/* Gradients for Redesigned Core & New Logo */}
+          <linearGradient id="heroOrbitGrad1" x1="240" y1="140" x2="360" y2="250" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0284c7" />
+            <stop offset="50%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#06b6d4" />
+          </linearGradient>
+
+          <linearGradient id="heroOrbitGrad2" x1="250" y1="240" x2="350" y2="150" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#6366f1" />
+            <stop offset="50%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#0284c7" />
+          </linearGradient>
+
+          <linearGradient id="heroCircleChassis" x1="260" y1="155" x2="340" y2="235" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="40%" stopColor="#0284c7" />
+            <stop offset="80%" stopColor="#0369a1" />
+            <stop offset="100%" stopColor="#6366f1" />
+          </linearGradient>
+
+          <radialGradient id="heroCircleCoreBg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor={isLight ? "#ffffff" : "#1e293b"} />
+            <stop offset="60%" stopColor={isLight ? "#f0f9ff" : "#0f172a"} />
+            <stop offset="100%" stopColor={isLight ? "#e0f2fe" : "#020617"} />
+          </radialGradient>
+
+          <linearGradient id="heroLogoWingLeft" x1="284" y1="212" x2="300" y2="170" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0369a1" />
+            <stop offset="60%" stopColor="#0284c7" />
+            <stop offset="100%" stopColor="#0ea5e9" />
+          </linearGradient>
+
+          <linearGradient id="heroLogoWingRight" x1="316" y1="212" x2="300" y2="170" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0ea5e9" />
+            <stop offset="60%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#7dd3fc" />
+          </linearGradient>
+
+          <linearGradient id="heroLogoDiamond" x1="293" y1="187" x2="307" y2="203" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="40%" stopColor="#7dd3fc" />
+            <stop offset="100%" stopColor="#0284c7" />
+          </linearGradient>
         </defs>
 
         {/* ── 1. MAIN CARD CANVAS ── */}
@@ -158,25 +202,26 @@ export default function HeroArchitectureSvg({
           <line x1="300" y1="58" x2="300" y2="330" strokeDasharray="2 4" />
         </g>
 
-        {/* ── 2. TOP HUD TELEMETRY BAR ── */}
+        {/* ── 2. TOP HUD TELEMETRY BAR (PERFECTLY ALIGNED & SYMMETRICAL) ── */}
         <g id="top-hud">
-          {/* Status Capsule */}
+          {/* Status Capsule (Left) */}
           <rect
             x="24"
-            y="22"
-            width="170"
+            y="20"
+            width="132"
             height="24"
             rx="12"
             fill={colors.nodeBg}
             stroke={colors.nodeBorder}
             strokeWidth="1"
           />
-          <circle cx="36" cy="34" r="4" fill={colors.emerald} className="hero-beacon" />
+          <circle cx="37" cy="32" r="3.5" fill={colors.emerald} className="hero-beacon" />
           <text
             x="48"
-            y="38"
+            y="32"
+            dominantBaseline="central"
             fill={colors.textPrimary}
-            fontSize="10"
+            fontSize="9"
             fontWeight="700"
             fontFamily="ui-monospace, monospace"
             letterSpacing="0.06em"
@@ -184,13 +229,24 @@ export default function HeroArchitectureSvg({
             ORCHESTRATOR LIVE
           </text>
 
-          {/* Center Protocol Label */}
+          {/* Center Protocol Label Badge */}
+          <rect
+            x="172"
+            y="20"
+            width="256"
+            height="24"
+            rx="12"
+            fill={isLight ? "rgba(2, 132, 199, 0.05)" : "rgba(56, 189, 248, 0.07)"}
+            stroke={isLight ? "rgba(2, 132, 199, 0.22)" : "rgba(56, 189, 248, 0.25)"}
+            strokeWidth="1"
+          />
           <text
             x="300"
-            y="37"
+            y="32"
             textAnchor="middle"
+            dominantBaseline="central"
             fill={colors.sky}
-            fontSize="11"
+            fontSize="9.5"
             fontWeight="800"
             fontFamily="system-ui, -apple-system, sans-serif"
             letterSpacing="0.08em"
@@ -200,23 +256,25 @@ export default function HeroArchitectureSvg({
 
           {/* Right Metrics Pill */}
           <rect
-            x="466"
-            y="22"
-            width="110"
+            x="444"
+            y="20"
+            width="132"
             height="24"
             rx="12"
             fill={colors.nodeBg}
             stroke={colors.nodeBorder}
             strokeWidth="1"
           />
+          <circle cx="457" cy="32" r="3.5" fill={colors.sky} />
           <text
-            x="521"
-            y="38"
-            textAnchor="middle"
+            x="468"
+            y="32"
+            dominantBaseline="central"
             fill={colors.textSecondary}
-            fontSize="9"
+            fontSize="8.5"
             fontWeight="700"
             fontFamily="ui-monospace, monospace"
+            letterSpacing="0.04em"
           >
             0-DRIFT ARCHITECTURE
           </text>
@@ -358,101 +416,163 @@ export default function HeroArchitectureSvg({
           />
         </g>
 
-        {/* ── 5. CENTER: AARK OCTAGONAL QUANTUM CORE ── */}
+        {/* ── 5. CENTER: REDESIGNED LOGO CIRCLE & NEW AARK MODERNIZATION EMBLEM ── */}
         <g id="quantum-core">
           {/* Ambient Glow Aura */}
-          <circle cx="300" cy="195" r="75" fill="url(#heroQuantumGlow)" />
+          <circle cx="300" cy="195" r="78" fill="url(#heroQuantumGlow)" opacity={isLight ? 0.75 : 0.95} />
 
-          {/* Outer Rotating Counter Ring */}
+          {/* 1. Precision Outer Telemetry Calibration Track (r=66) with 12 Azimuth Ticks */}
           <circle
             cx="300"
             cy="195"
-            r="64"
+            r="66"
             stroke={colors.sky}
-            strokeWidth="1.5"
-            strokeDasharray="14 8 4 8"
+            strokeWidth="1"
+            strokeDasharray="1 8.5"
+            opacity={isLight ? 0.45 : 0.65}
+          />
+          {/* 4 Cardinal Alignment Pips */}
+          <line x1="300" y1="126" x2="300" y2="132" stroke={colors.sky} strokeWidth="2" strokeLinecap="round" />
+          <line x1="300" y1="258" x2="300" y2="264" stroke={colors.sky} strokeWidth="2" strokeLinecap="round" />
+          <line x1="231" y1="195" x2="237" y2="195" stroke={colors.sky} strokeWidth="2" strokeLinecap="round" />
+          <line x1="363" y1="195" x2="369" y2="195" stroke={colors.sky} strokeWidth="2" strokeLinecap="round" />
+
+          {/* 2. Counter-Rotating Outer Segmented Cybernetic Data Ring (r=57) */}
+          <circle
+            cx="300"
+            cy="195"
+            r="57"
+            stroke="url(#heroOrbitGrad1)"
+            strokeWidth="1.8"
+            strokeDasharray="26 12 8 12"
             className="hero-rot-ccw"
-            opacity={isLight ? 0.6 : 0.8}
+            opacity={isLight ? 0.8 : 0.9}
           />
+          {/* Orbiting Satellite Photon Particles (Outer) */}
+          <g className="hero-rot-ccw">
+            <circle cx="243" cy="195" r="2.8" fill="#38bdf8" filter="url(#heroSoftGlow)" />
+            <circle cx="357" cy="195" r="2.8" fill="#38bdf8" filter="url(#heroSoftGlow)" />
+          </g>
 
-          {/* Inner Rotating Clockwise Ring */}
+          {/* 3. Clockwise Inner Segmented Energy Ring (r=48) */}
           <circle
             cx="300"
             cy="195"
-            r="52"
-            stroke={colors.indigo}
-            strokeWidth="2"
-            strokeDasharray="18 10"
+            r="48"
+            stroke="url(#heroOrbitGrad2)"
+            strokeWidth="1.6"
+            strokeDasharray="18 10 4 10"
             className="hero-rot-cw"
-            opacity={isLight ? 0.7 : 0.85}
+            opacity={isLight ? 0.85 : 0.95}
           />
+          {/* Orbiting Satellite Photon Particles (Inner) */}
+          <g className="hero-rot-cw">
+            <circle cx="300" cy="147" r="2.4" fill="#818cf8" />
+            <circle cx="300" cy="243" r="2.4" fill="#818cf8" />
+          </g>
 
-          {/* Octagonal Reactor Housing */}
-          <polygon
-            points="272,155 328,155 348,175 348,215 328,235 272,235 252,215 252,175"
-            fill={isLight ? "#ffffff" : "#0f172a"}
-            stroke={colors.sky}
+          {/* 4. Center Logo Reactor Housing Bezel (r=38) */}
+          <circle
+            cx="300"
+            cy="195"
+            r="38"
+            fill="url(#heroCircleCoreBg)"
+            stroke="url(#heroCircleChassis)"
             strokeWidth="2.5"
             filter="url(#heroSoftGlow)"
           />
-
-          {/* Silicon Chip Die Grid */}
-          <rect
-            x="270"
-            y="165"
-            width="60"
-            height="60"
-            rx="8"
-            fill={isLight ? "#e0f2fe" : "#0284c7"}
-            fillOpacity={isLight ? 0.6 : 0.25}
+          {/* Concentric Circuit Hairline Ring (r=33) */}
+          <circle
+            cx="300"
+            cy="195"
+            r="33"
+            fill="none"
             stroke={colors.sky}
-            strokeWidth="1.5"
+            strokeWidth="0.8"
+            strokeDasharray="4 2"
+            opacity={isLight ? 0.4 : 0.6}
           />
 
-          {/* Central Pulsing Heart Node / Holographic Core Bed */}
-          {hide2dDiamond ? (
-            <g className="hero-core-beat" opacity={isLight ? 0.35 : 0.5}>
-              <circle cx="300" cy="195" r="14" fill="none" stroke={colors.sky} strokeWidth="1" strokeDasharray="3 3" />
-              <circle cx="300" cy="195" r="3" fill={colors.sky} />
-            </g>
-          ) : (
-            <g className="hero-core-beat">
-              <polygon
-                points="285,195 300,180 315,195 300,210"
-                fill={colors.sky}
-              />
-              <circle cx="300" cy="195" r="4" fill="#ffffff" />
-            </g>
-          )}
+          {/* 5. Central Modern AARK Innovations Insignia / Modernization Logo */}
+          <g id="aark-center-logo" className="hero-core-beat" style={{ transformOrigin: "300px 195px" }}>
+            {/* Floating Apex Chevron Crest */}
+            <path
+              d="M 293 170 L 300 163 L 307 170"
+              stroke={colors.sky}
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+            {/* Micro apex spark */}
+            <circle cx="300" cy="160" r="1.5" fill={colors.sky} />
 
-          {/* 4 Cardinal Flux Pins */}
-          <line x1="300" y1="145" x2="300" y2="155" stroke={colors.sky} strokeWidth="3" strokeLinecap="round" />
-          <line x1="300" y1="235" x2="300" y2="245" stroke={colors.sky} strokeWidth="3" strokeLinecap="round" />
-          <line x1="242" y1="195" x2="252" y2="195" stroke={colors.sky} strokeWidth="3" strokeLinecap="round" />
-          <line x1="348" y1="195" x2="358" y2="195" stroke={colors.sky} strokeWidth="3" strokeLinecap="round" />
+            {/* Left Ascending Modern Chevron Wing of 'A' */}
+            <polygon
+              points="285,212 291.5,212 299,176 294,176"
+              fill="url(#heroLogoWingLeft)"
+              stroke={isLight ? "#0369a1" : "#0284c7"}
+              strokeWidth="0.5"
+            />
+
+            {/* Right Ascending Modern Chevron Wing of 'A' */}
+            <polygon
+              points="315,212 308.5,212 301,176 306,176"
+              fill="url(#heroLogoWingRight)"
+              stroke={isLight ? "#0284c7" : "#38bdf8"}
+              strokeWidth="0.5"
+            />
+
+            {/* Modernization Bridge Arch ("The Ark") */}
+            <path
+              d="M 288 200 L 312 200"
+              stroke={colors.sky}
+              strokeWidth="2.8"
+              strokeLinecap="round"
+            />
+
+            {/* Radiant Central Quantum Prism Diamond (Zero-Drift AI Node) */}
+            <polygon
+              points="300,187 307,195 300,203 293,195"
+              fill="url(#heroLogoDiamond)"
+              stroke="#ffffff"
+              strokeWidth="0.8"
+              filter="url(#heroSoftGlow)"
+            />
+            {/* Pure White Core Point glint */}
+            <circle cx="300" cy="195" r="2.2" fill="#ffffff" />
+          </g>
+
+          {/* 4 Cardinal Conduit Flux Pins connecting Core to Conduits */}
+          <line x1="300" y1="147" x2="300" y2="157" stroke={colors.sky} strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="300" y1="233" x2="300" y2="243" stroke={colors.sky} strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="252" y1="195" x2="262" y2="195" stroke={colors.sky} strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="338" y1="195" x2="348" y2="195" stroke={colors.sky} strokeWidth="2.5" strokeLinecap="round" />
 
           {/* Telemetry Status Banner Under Core */}
           <rect
-            x="220"
+            x="205"
             y="266"
-            width="160"
+            width="190"
             height="22"
-            rx="6"
+            rx="11"
             fill={colors.nodeBg}
             stroke={colors.sky}
             strokeWidth="1"
           />
+          <circle cx="218" cy="277" r="3" fill={colors.emerald} className="hero-beacon" />
           <text
-            x="300"
-            y="280"
+            x="305"
+            y="277"
             textAnchor="middle"
+            dominantBaseline="central"
             fill={colors.sky}
             fontSize="9"
             fontWeight="800"
             fontFamily="ui-monospace, monospace"
             letterSpacing="0.08em"
           >
-            AARK QUANTUM CORE
+            AARK MODERNIZATION CORE
           </text>
         </g>
 
