@@ -128,17 +128,18 @@ export default function WhyAarkComparisonSvg({
           <rect
             x="24"
             y="20"
-            width="170"
+            width="132"
             height="24"
             rx="12"
             fill={colors.nodeBg}
             stroke={colors.rose}
             strokeWidth="1"
           />
-          <circle cx="36" cy="32" r="3.5" fill={colors.rose} />
+          <circle cx="37" cy="32" r="3.5" fill={colors.rose} />
           <text
             x="48"
-            y="36"
+            y="32"
+            dominantBaseline="central"
             fill={colors.rose}
             fontSize="9"
             fontWeight="800"
@@ -148,37 +149,63 @@ export default function WhyAarkComparisonSvg({
             BIG-4 BLOAT MODEL
           </text>
 
+          {/* Center Protocol Capsule */}
+          <rect
+            x="172"
+            y="20"
+            width="256"
+            height="24"
+            rx="12"
+            fill={isLight ? "rgba(2, 132, 199, 0.05)" : "rgba(56, 189, 248, 0.07)"}
+            stroke={isLight ? "rgba(2, 132, 199, 0.22)" : "rgba(56, 189, 248, 0.25)"}
+            strokeWidth="1"
+          />
+          <text
+            x="300"
+            y="32"
+            textAnchor="middle"
+            dominantBaseline="central"
+            fill={colors.sky}
+            fontSize="9.5"
+            fontWeight="800"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="0.08em"
+          >
+            THE ARCHITECTURAL DIFFERENCE
+          </text>
+
           {/* Right Title: AARK Precision */}
           <rect
-            x="406"
+            x="444"
             y="20"
-            width="170"
+            width="132"
             height="24"
             rx="12"
             fill={colors.nodeBg}
             stroke={colors.emerald}
             strokeWidth="1"
           />
-          <circle cx="418" cy="32" r="3.5" fill={colors.emerald} />
+          <circle cx="457" cy="32" r="3.5" fill={colors.emerald} />
           <text
-            x="430"
-            y="36"
+            x="468"
+            y="32"
+            dominantBaseline="central"
             fill={colors.emerald}
-            fontSize="9"
+            fontSize="8.5"
             fontWeight="800"
             fontFamily="ui-monospace, monospace"
-            letterSpacing="0.06em"
+            letterSpacing="0.04em"
           >
             AARK SENIOR HIGHWAY
           </text>
         </g>
 
-        {/* ── 3. LEFT ZONE: BIG-4 BLOAT MODEL (x: 20 to 280) ── */}
+        {/* ── 3. LEFT ZONE: BIG-4 BLOAT MODEL (x: 20 to 262) ── */}
         <g id="big4-zone">
           <rect
-            x="24"
+            x="20"
             y="68"
-            width="250"
+            width="242"
             height="254"
             rx="16"
             fill={colors.nodeBg}
@@ -187,11 +214,11 @@ export default function WhyAarkComparisonSvg({
           />
 
           {/* Bloat Card 1: Junior Staffing */}
-          <g id="bloat-card-1" transform="translate(32, 80)">
+          <g id="bloat-card-1" transform="translate(26, 80)">
             <rect
               x="0"
               y="0"
-              width="234"
+              width="230"
               height="70"
               rx="12"
               fill={activePillar === 0 ? (isLight ? "#fff1f2" : "rgba(225, 29, 72, 0.15)") : (isLight ? "#ffffff" : "rgba(15, 23, 42, 0.5)")}
@@ -214,11 +241,11 @@ export default function WhyAarkComparisonSvg({
           </g>
 
           {/* Bloat Card 2: Surprise Billing */}
-          <g id="bloat-card-2" transform="translate(32, 162)">
+          <g id="bloat-card-2" transform="translate(26, 162)">
             <rect
               x="0"
               y="0"
-              width="234"
+              width="230"
               height="70"
               rx="12"
               fill={activePillar === 1 ? (isLight ? "#fffbeb" : "rgba(245, 158, 11, 0.15)") : (isLight ? "#ffffff" : "rgba(15, 23, 42, 0.5)")}
@@ -241,11 +268,11 @@ export default function WhyAarkComparisonSvg({
           </g>
 
           {/* Bloat Card 3: Vendor Lock-in */}
-          <g id="bloat-card-3" transform="translate(32, 244)">
+          <g id="bloat-card-3" transform="translate(26, 244)">
             <rect
               x="0"
               y="0"
-              width="234"
+              width="230"
               height="70"
               rx="12"
               fill={activePillar === 2 ? (isLight ? "#fff1f2" : "rgba(225, 29, 72, 0.15)") : (isLight ? "#ffffff" : "rgba(15, 23, 42, 0.5)")}
@@ -268,63 +295,12 @@ export default function WhyAarkComparisonSvg({
           </g>
         </g>
 
-        {/* ── 4. CENTER: PRECISION LASER DIVIDER ── */}
-        <g id="center-laser-divider">
-          {/* Glowing Vertical Laser Line */}
-          <line
-            x1="295"
-            y1="56"
-            x2="295"
-            y2="334"
-            stroke="url(#whyLaserDivider)"
-            strokeWidth="2.5"
-            filter="url(#whyGlow)"
-          />
-
-          {/* The AARK Difference Badge */}
-          <g transform="translate(245, 178)">
-            <rect
-              x="0"
-              y="0"
-              width="100"
-              height="34"
-              rx="8"
-              fill={isLight ? "#ffffff" : "#0f172a"}
-              stroke={colors.sky}
-              strokeWidth="1.5"
-              filter="url(#whyGlow)"
-            />
-            <text
-              x="50"
-              y="15"
-              textAnchor="middle"
-              fill={colors.textSecondary}
-              fontSize="7"
-              fontWeight="800"
-              letterSpacing="0.1em"
-            >
-              THE ARCHITECT
-            </text>
-            <text
-              x="50"
-              y="27"
-              textAnchor="middle"
-              fill={colors.sky}
-              fontSize="9"
-              fontWeight="900"
-              letterSpacing="0.08em"
-            >
-              DIFFERENCE
-            </text>
-          </g>
-        </g>
-
-        {/* ── 5. RIGHT ZONE: AARK SENIOR ARCHITECT HIGHWAY (x: 310 to 575) ── */}
+        {/* ── 4. RIGHT ZONE: AARK SENIOR ARCHITECT HIGHWAY (x: 338 to 580) ── */}
         <g id="aark-highway">
           <rect
-            x="315"
+            x="338"
             y="68"
-            width="260"
+            width="242"
             height="254"
             rx="16"
             fill={colors.nodeBg}
@@ -335,13 +311,13 @@ export default function WhyAarkComparisonSvg({
           {/* Node 1: Senior Architect Helm (Pillar 0) */}
           <g
             id="node-senior-helm"
-            transform="translate(328, 80)"
+            transform="translate(344, 80)"
             className={activePillar === 0 ? "why-beacon-pulse" : ""}
           >
             <rect
               x="0"
               y="0"
-              width="234"
+              width="230"
               height="70"
               rx="12"
               fill={activePillar === 0 ? (isLight ? "#ffffff" : "#1e293b") : colors.nodeBg}
@@ -367,9 +343,9 @@ export default function WhyAarkComparisonSvg({
 
           {/* Inter-Node Highway Conduit 1 */}
           <line
-            x1="445"
+            x1="459"
             y1="150"
-            x2="445"
+            x2="459"
             y2="162"
             stroke={colors.sky}
             strokeWidth="3"
@@ -380,13 +356,13 @@ export default function WhyAarkComparisonSvg({
           {/* Node 2: Locked Milestone Vault (Pillar 1) */}
           <g
             id="node-milestone-vault"
-            transform="translate(328, 162)"
+            transform="translate(344, 162)"
             className={activePillar === 1 ? "why-beacon-pulse" : ""}
           >
             <rect
               x="0"
               y="0"
-              width="234"
+              width="230"
               height="70"
               rx="12"
               fill={activePillar === 1 ? (isLight ? "#ffffff" : "#1e293b") : colors.nodeBg}
@@ -412,9 +388,9 @@ export default function WhyAarkComparisonSvg({
 
           {/* Inter-Node Highway Conduit 2 */}
           <line
-            x1="445"
+            x1="459"
             y1="232"
-            x2="445"
+            x2="459"
             y2="244"
             stroke={colors.emerald}
             strokeWidth="3"
@@ -425,13 +401,13 @@ export default function WhyAarkComparisonSvg({
           {/* Node 3: Client-Owned Production Container (Pillar 2) */}
           <g
             id="node-client-assets"
-            transform="translate(328, 244)"
+            transform="translate(344, 244)"
             className={activePillar === 2 ? "why-beacon-pulse" : ""}
           >
             <rect
               x="0"
               y="0"
-              width="234"
+              width="230"
               height="70"
               rx="12"
               fill={activePillar === 2 ? (isLight ? "#ffffff" : "#1e293b") : colors.nodeBg}
@@ -451,6 +427,59 @@ export default function WhyAarkComparisonSvg({
             <rect x="46" y="44" width="120" height="14" rx="4" fill={colors.amberGlow} />
             <text x="106" y="54" textAnchor="middle" fill={colors.amber} fontSize="8" fontWeight="800">
               100% CLIENT OWNED
+            </text>
+          </g>
+        </g>
+
+        {/* ── 5. CENTER: PRECISION LASER DIVIDER & THE AARK DIFFERENCE BADGE (RENDERED ON TOP) ── */}
+        <g id="center-laser-divider">
+          {/* Glowing Vertical Laser Line */}
+          <line
+            x1="300"
+            y1="56"
+            x2="300"
+            y2="334"
+            stroke="url(#whyLaserDivider)"
+            strokeWidth="2.5"
+            filter="url(#whyGlow)"
+          />
+
+          {/* The AARK Difference Badge (Centered at x=300 with 6px clear margin from both sides) */}
+          <g id="center-difference-badge">
+            <rect
+              x="262"
+              y="177"
+              width="76"
+              height="36"
+              rx="10"
+              fill={isLight ? "#ffffff" : "#0f172a"}
+              stroke={colors.sky}
+              strokeWidth="1.5"
+              filter="url(#whyGlow)"
+            />
+            <text
+              x="300"
+              y="190"
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill={colors.textSecondary}
+              fontSize="7"
+              fontWeight="800"
+              letterSpacing="0.08em"
+            >
+              THE ARCHITECT
+            </text>
+            <text
+              x="300"
+              y="202"
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill={colors.sky}
+              fontSize="8.5"
+              fontWeight="900"
+              letterSpacing="0.08em"
+            >
+              DIFFERENCE
             </text>
           </g>
         </g>
