@@ -1,0 +1,242 @@
+/* ==========================================================================
+   AARK INNOVATIONS - Enterprise Corporate Stylesheet
+   Modernize How Your Business Operates | Fort Mill, SC
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-orange: #ff6b1a;
+  --primary-orange-glow: rgba(255, 107, 26, 0.35);
+  --accent-amber: #f59e0b;
+  --bg-dark: #080808;
+  --bg-card: rgba(18, 18, 22, 0.75);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-card-hover: rgba(255, 107, 26, 0.4);
+  --text-muted: #94a3b8;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: #ffffff;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 107, 26, 0.4) transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: #f8fafc;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 26, 0.35);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 26, 0.7);
+}
+
+/* Text Selection */
+::selection {
+  background: var(--primary-orange);
+  color: #000;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Ghost Serif Accent Text (Playfair outline) */
+.ghost-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.4);
+  letter-spacing: -0.01em;
+}
+
+.ghost-orange {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: transparent;
+  -webkit-text-stroke: 1.2px var(--primary-orange);
+  letter-spacing: -0.01em;
+}
+
+/* Grain Film Texture Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Glassmorphism Header */
+.glass-header {
+  background: rgba(8, 8, 10, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(15, 15, 20, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 107, 26, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 24px -6px rgba(255, 107, 26, 0.15);
+}
+
+/* Video Scrub Wrapper */
+#video-scrub-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-color: #080808;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scrub-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Video Overlay Gradients */
+.video-overlay-dark {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(8, 8, 10, 0.52);
+  z-index: 1;
+}
+
+.video-overlay-grad-x {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(8, 8, 10, 0.88) 0%, rgba(8, 8, 10, 0.35) 45%, rgba(8, 8, 10, 0.75) 100%);
+  z-index: 2;
+}
+
+.video-overlay-grad-y {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(8, 8, 10, 0.75) 0%, transparent 20%, transparent 80%, rgba(8, 8, 10, 0.95) 100%);
+  z-index: 3;
+}
+
+/* Custom Interactive Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease-out, width 0.25s ease, height 0.25s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.hovered {
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 107, 26, 0.9);
+}
+
+/* Bottom Viewport Blur Layer */
+.bottom-blur-gradient {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  pointer-events: none;
+  z-index: 30;
+  background: linear-gradient(to top, rgba(8, 8, 10, 0.95) 0%, transparent 100%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  mask-image: linear-gradient(to top, black 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%);
+  transition: opacity 0.4s ease;
+}
+
+/* Glow effects */
+.glow-orange {
+  box-shadow: 0 0 40px -10px var(--primary-orange-glow);
+}
+
+/* Pulse animation */
+@keyframes orange-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.15); }
+}
+
+.animate-orange-pulse {
+  animation: orange-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Range Input Styling */
+input[type=range].custom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  height: 6px;
+  border-radius: 99px;
+  outline: none;
+}
+
+input[type=range].custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--primary-orange-glow);
+  transition: transform 0.1s ease;
+}
+
+input[type=range].custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
